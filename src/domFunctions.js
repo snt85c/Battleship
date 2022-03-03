@@ -3,14 +3,16 @@ const enemyBoard = document.getElementById("enemyBoard")
 
 function populateBoard(passedBoard, player) {
     for (let i = 0; i <= 9; i++) {
+
         let row = document.createElement("div")
         row.setAttribute("id", "row")
 
         for (let j = 0; j <= 9; j++) {
             let cell = document.createElement("div")
-            cell.setAttribute("id", "cell")
+            cell.setAttribute("class", "cell_" + player)
+            cell.setAttribute("id", i + "/" + j)
             if (passedBoard[i][j].hasShip) {
-                cell.textContent = "X"
+                cell.textContent = passedBoard[i][j].shipProperties.substring(0, 1)
                 cell.style.color = "red"
             } else {
                 cell.textContent = ""

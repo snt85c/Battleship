@@ -7,4 +7,7 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'docs'),
     },
+    experiments: {
+        topLevelAwait: true,
+    },
 };

@@ -1,7 +1,7 @@
-import { gameController } from "../src/gameController";
+import { boardController } from "../src/boardController";
 import { Ship } from "../src/Ship";
 
-const Board = new gameController();
+const Board = new boardController();
 const carrier = new Ship(5, "Carrier")
 const battleship = new Ship(4, "Battleship")
 const destroyer = new Ship(3, "Destroyer")
@@ -25,9 +25,8 @@ test("check the ship", () => {
 })
 
 test("check the board", () => {
-    expect(Board.board[0][0].shotTaken).toBe(false)
-    expect(Board.board[0][0].hasShip).toBe(false)
-        // expect(Board.board[0][1].hasShip).toBe(true)
+    expect(Board.playerBoard[0][0].shotTaken).toBe(false)
+    expect(Board.playerBoard[0][0].hasShip).toBe(false)
 
 })
 
