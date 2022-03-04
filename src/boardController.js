@@ -1,7 +1,7 @@
 import { Ship } from "./Ship";
 
 class Cell {
-    constructor(ownedBy) {
+    constructor() {
         this.shotTaken = false
         this.hasShip = false;
     }
@@ -20,8 +20,8 @@ class boardController {
             this.playerBoard[i] = []
             this.enemyBoard[i] = []
             for (let j = 0; j < 10; j++) {
-                this.playerBoard[i][j] = new Cell("player")
-                this.enemyBoard[i][j] = new Cell("enemy")
+                this.playerBoard[i][j] = new Cell()
+                this.enemyBoard[i][j] = new Cell()
             }
         }
     }
