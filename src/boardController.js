@@ -30,11 +30,13 @@ class boardController {
         switch (axis) {
             case "x":
                 if (ship.getLength() + lon > 10) {
+
                     return false;
                 }
                 for (let i = 0; i < ship.getLength(); i++) {
                     if (board[lat][lon + i].hasShip) {
                         return false
+
                     }
                 }
                 return true;
@@ -58,6 +60,7 @@ class boardController {
                 if (axis == "x") {
                     board[lat][lon + i].hasShip = true;
                     board[lat][lon + i].shipProperties = ship.getClass();
+
                 }
                 if (axis == "y") {
                     board[lat + i][lon].hasShip = true;

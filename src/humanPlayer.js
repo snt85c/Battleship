@@ -1,4 +1,5 @@
 import * as ship from "./Ship"
+import * as dom from "./domFunctions"
 
 class HumanPlayer {
     constructor(board) {
@@ -22,11 +23,12 @@ class HumanPlayer {
     // }
 
     deploy() { //random deployment
-        this.board.randomDeployment(this.Carrier, this.board.playerBoard)
-        this.board.randomDeployment(this.Battleship, this.board.playerBoard)
-        this.board.randomDeployment(this.Destroyer, this.board.playerBoard)
-        this.board.randomDeployment(this.Submarine, this.board.playerBoard)
-        this.board.randomDeployment(this.PatrolBoat, this.board.playerBoard)
+        // this.board.randomDeployment(this.Carrier, this.board.playerBoard)
+        // this.board.randomDeployment(this.Battleship, this.board.playerBoard)
+        // this.board.randomDeployment(this.Destroyer, this.board.playerBoard)
+        // this.board.randomDeployment(this.Submarine, this.board.playerBoard)
+        // this.board.randomDeployment(this.PatrolBoat, this.board.playerBoard)
+
     }
 
     async attack(enemy) {

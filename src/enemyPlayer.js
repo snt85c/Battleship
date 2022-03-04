@@ -19,12 +19,10 @@ class enemyPlayer {
 
     deploy() {
         this.board.randomDeployment(this.Carrier, this.board.enemyBoard)
-            // this.board.randomDeployment(this.Battleship, this.board.enemyBoard)
-            // this.board.randomDeployment(this.Destroyer, this.board.enemyBoard)
-            // this.board.randomDeployment(this.Submarine, this.board.enemyBoard)
-            // this.board.randomDeployment(this.PatrolBoat, this.board.enemyBoard)
-
-        //FLEET STATUS NEEDS TO BE CHANGED AS WELL
+        this.board.randomDeployment(this.Battleship, this.board.enemyBoard)
+        this.board.randomDeployment(this.Destroyer, this.board.enemyBoard)
+        this.board.randomDeployment(this.Submarine, this.board.enemyBoard)
+        this.board.randomDeployment(this.PatrolBoat, this.board.enemyBoard)
     }
 
     attack(player) {
@@ -57,11 +55,11 @@ class enemyPlayer {
     }
 
     fleetStatus() {
-        let status = this.Carrier.getLength() //+
-            // this.Battleship.getLength() +
-            // this.Destroyer.getLength() +
-            // this.Submarine.getLength() +
-            // this.PatrolBoat.getLength();
+        let status = this.Carrier.getLength() +
+            this.Battleship.getLength() +
+            this.Destroyer.getLength() +
+            this.Submarine.getLength() +
+            this.PatrolBoat.getLength();
         if (status == 0) {
             console.log("GAMEOVER")
         }

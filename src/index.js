@@ -7,6 +7,7 @@ const board = new controller.boardController()
 const enemy = new enemyPlayer.enemyPlayer(board);
 const player = new HumanPlayer.HumanPlayer(board)
 
+dom.dragDrop(player, board)
 dom.populateBoard(board.playerBoard, "player")
 dom.populateBoard(board.enemyBoard, "enemy")
 
