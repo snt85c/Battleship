@@ -2,6 +2,8 @@ const board = document.getElementById("board")
 const enemyBoard = document.getElementById("enemyBoard")
 const rotate = document.getElementById("rotate")
 
+let fleet = document.querySelectorAll(".ship")
+
 let axis = "y"
 
 function populateBoard(passedBoard, player) {
@@ -32,7 +34,18 @@ function populateBoard(passedBoard, player) {
 
 rotate.onclick = () => {
     axis = axis == "y" ? "x" : "y";
-    console.log(axis)
+    if (axis == "x") {
+        fleet.forEach((ship) => {
+            document.getElementById(ship.id).src = "img/" + ship.id + "X.png"
+        })
+        document.getElementById("shipcontainer").style.flexDirection = "column"
+    } else {
+        fleet.forEach((ship) => {
+            document.getElementById(ship.id).src = "img/" + ship.id + ".png"
+        })
+        document.getElementById("shipcontainer").style.flexDirection = "row"
+        document.getElementById("shipcontainer").style.margin = "10px"
+    }
 }
 
 function dragDrop(player, board) {
@@ -40,22 +53,26 @@ function dragDrop(player, board) {
 
     document.addEventListener("dragstart", function(event) {
         dragged = event.target;
-        event.target.style.height = 30 * player[dragged.id].getLength() + "px"
-        if (axis == "x") {
-            event.target.style.transform = "rotate(90deg)"; ///rotate flips the image in a bad way. maybe use an already flipped image
+        if (axis == "y") {
+            event.target.style.height = 30 * player[dragged.id].getLength() + "px"
+
         } else {
-            event.target.style.transform = "rotate(0deg)";
+            event.target.style.width = 30 * player[dragged.id].getLength() + "px"
         }
+
         if (dragged.id == "Carrier") {
             event.target.style.marginLeft = "-7px"
+
+        } else {
+            event.target.style.marginBottom = "-8px"
         }
     }, false);
 
 
-    document.addEventListener("dragend", function(event) {
-        // reset the transparency
-        event.target.style.opacity = "";
-    }, false);
+    // document.addEventListener("dragend", function(event) {
+    //     // reset the transparency
+    //     event.target.style.opacity = "";
+    // }, false);
 
     /* events fired on the drop targets */
     document.addEventListener("dragover", function(event) {
@@ -87,8 +104,10 @@ function dragDrop(player, board) {
             let lat = parseInt(event.target.id.substring(0, 1))
             let lon = parseInt(event.target.id.substring(2))
             if (board.deployShip(player[dragged.id], axis, lat, lon, board.playerBoard)) {
-                dragged.parentNode.removeChild(dragged);
+                document.getElementById(dragged.id).setAttribute("class", "deployed")
                 event.target.appendChild(dragged);
+                fleet = document.querySelectorAll(".ship")
+                console.log(fleet)
             }
         }
     }, false);

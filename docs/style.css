@@ -12,6 +12,10 @@
     flex-direction: row;
 }
 
+img {
+    object-fit: scale-down;
+}
+
 #boards {
     display: flex;
     flex-direction: column;
@@ -35,16 +39,19 @@
     text-justify: auto;
 }
 
+#menu {
+    display: flex;
+    flex-direction: column;
+}
+
+#shipcontainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .ship:hover {
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px black);
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    background-color: rgba(255, 255, 255, .1);
-    transition: opacity 0.6s;
 }
