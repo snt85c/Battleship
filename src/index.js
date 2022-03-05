@@ -8,8 +8,9 @@ const enemy = new enemyPlayer.enemyPlayer(board);
 const player = new HumanPlayer.HumanPlayer(board)
 
 dom.dragDrop(player, board)
-dom.populateBoard(board.playerBoard, "player")
-dom.populateBoard(board.enemyBoard, "enemy")
+dom.createBoard(board.playerBoard, "player")
+dom.createBoard(board.enemyBoard, "enemy")
+dom.buttonFunctions(player, enemy, board)
 
 async function init() {
     player.attack(enemy)

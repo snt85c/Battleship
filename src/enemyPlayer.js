@@ -50,7 +50,7 @@ class enemyPlayer {
         } else {
             console.log("miss")
         }
-        let id = lat + "/" + lon;
+        let id = lat + "/" + lon + "_p";
         document.getElementById(id).style.backgroundColor = "black"
     }
 

@@ -60,11 +60,15 @@ class boardController {
                 if (axis == "x") {
                     board[lat][lon + i].hasShip = true;
                     board[lat][lon + i].shipProperties = ship.getClass();
-
+                    board[lat][lon + i].shipLength = ship.getLength();
+                    board[lat][lon + i].shipAxis = axis;
                 }
                 if (axis == "y") {
                     board[lat + i][lon].hasShip = true;
                     board[lat + i][lon].shipProperties = ship.getClass();
+                    board[lat + i][lon].shipLength = ship.getLength();
+                    board[lat + i][lon].shipAxis = axis
+
                 }
             }
             return true

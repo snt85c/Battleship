@@ -22,21 +22,24 @@ class HumanPlayer {
     //     this.board.deployShip(this.PatrolBoat, "x", 9, 8, this.board.playerBoard)
     // }
 
-    deploy() { //random deployment
-        // this.board.randomDeployment(this.Carrier, this.board.playerBoard)
-        // this.board.randomDeployment(this.Battleship, this.board.playerBoard)
-        // this.board.randomDeployment(this.Destroyer, this.board.playerBoard)
-        // this.board.randomDeployment(this.Submarine, this.board.playerBoard)
-        // this.board.randomDeployment(this.PatrolBoat, this.board.playerBoard)
+    deploy() {
 
+    }
+
+    deployRandom() { //random deployment
+        this.board.randomDeployment(this.Carrier, this.board.playerBoard)
+        this.board.randomDeployment(this.Battleship, this.board.playerBoard)
+        this.board.randomDeployment(this.Destroyer, this.board.playerBoard)
+        this.board.randomDeployment(this.Submarine, this.board.playerBoard)
+        this.board.randomDeployment(this.PatrolBoat, this.board.playerBoard)
     }
 
     async attack(enemy) {
         return new Promise((resolve) => {
             document.addEventListener("click", (e) => {
                 if (e.target.className === "cell_enemy" && (this.fleetStatus() !== 0 && enemy.fleetStatus() !== 0)) {
-                    e.target.style.backgroundColor = "black"
-                    this.fireOnTarget(e.target.id, enemy)
+                    // e.target.style.backgroundColor = "black"
+                    this.fireOnTarget(e.target, enemy)
                     resolve(enemy.attack(this));
                 }
             });
@@ -45,8 +48,10 @@ class HumanPlayer {
 
 
     fireOnTarget(e, enemy) {
-        let lat = e.substring(0, 1)
-        let lon = e.substring(2)
+        let coords = e.id.split("/")
+        let lat = coords[0].substring(0, 1)
+        let lon = coords[1].substring(0, 1)
+
         if (this.board.enemyBoard[lat][lon].shotTaken === true) {
             console.log("cannot fire on the same cell")
             return false;
@@ -55,8 +60,12 @@ class HumanPlayer {
         this.board.enemyBoard[lat][lon].shotTaken = true;
         if (this.board.enemyBoard[lat][lon].hasShip) {
             enemy[this.board.enemyBoard[lat][lon].shipProperties].hit()
+            e.style.backgroundColor = "red"
+
         } else {
             console.log("miss")
+            e.style.backgroundColor = "blue"
+
         }
     }
     fleetStatus() {
