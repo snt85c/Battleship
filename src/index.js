@@ -16,7 +16,7 @@ async function init() {
     player.attack(enemy)
 }
 
-init()
+// init()
 
 console.log({ playerBoard: board.playerBoard })
 console.log({ enemyBoard: board.enemyBoard })

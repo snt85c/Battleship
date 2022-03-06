@@ -5,6 +5,7 @@ let shipcontainer = document.getElementById("shipcontainer")
 const rotate = document.getElementById("rotate")
 const reset = document.getElementById("reset")
 const random = document.getElementById("random")
+const start = document.getElementById("start")
 
 let fleet = document.querySelectorAll(".ship")
 
@@ -28,7 +29,9 @@ function createBoard(playerBoard, player) {
             enemyBoard.appendChild(row)
         }
     }
-    populateBoard(playerBoard, player)
+    if (player == "player") {
+        populateBoard(playerBoard, player)
+    }
 }
 
 //populate the screen with data from the player board.
@@ -45,22 +48,19 @@ function populateBoard(board, player) {
                 if (board[i][j].shipAxis == "x") {
                     img.src = "img/" + ship + "X.png"
                     img.style.width = 27 * board[i][j].shipLength + "px"
-                        // img.style.marginTop = "10px"
-                        // if (ship == "Carrier") {
-                        //     img.style.marginTop = "-15px"
-                        // }
                 } else {
                     img.src = "img/" + ship + ".png"
                     img.style.height = 27 * board[i][j].shipLength + "px"
-                        // img.style.marginLeft = "-10px"
-                        // if (ship == "Carrier") {
-                        //     img.style.marginLeft = "-20px"
-
-                    // }
                 }
                 shipclass = shipclass.filter((value) => {
                     return value != ship;
                 })
+                if (ship == "Carrier") {
+                    img.classList.add("deployed_C")
+
+                } else {
+                    img.classList.add("deployed")
+                }
                 cell.appendChild(img)
             }
         }
@@ -68,6 +68,23 @@ function populateBoard(board, player) {
 
 }
 
+function hitOrMiss(lat, lon, player, key) {
+    let cell = document.getElementById(lat + "/" + lon + "_" + player.substring(0, 1))
+    let dot = document.createElement("img")
+    dot.setAttribute("id", "dot")
+
+    if (key == "hit") {
+        dot.src = "img/red.png"
+        cell.appendChild(dot)
+        return
+    }
+    if (key == "miss") {
+        dot.src = "img/blue.png"
+        cell.appendChild(dot)
+        return
+
+    }
+}
 
 function dragDrop(player, board) {
     var dragged;
@@ -185,15 +202,23 @@ function buttonFunctions(player, enemy, board) {
         enemy.deploy();
         createBoard(board.playerBoard, "player")
         createBoard(board.enemyBoard, "enemy")
+        document.getElementById("shipcontainer").style.display = "flex"
+
     }
 
     random.onclick = () => {
+        document.getElementById("shipcontainer").style.display = "none"
         resetDOM()
         enemy.deploy();
         player.deployRandom();
         createBoard(board.playerBoard, "player")
         createBoard(board.enemyBoard, "enemy")
     }
+
+    start.onclick = () => {
+        player.attack(enemy)
+    }
+
 }
 
-export { createBoard, populateBoard, dragDrop, buttonFunctions }
+export { createBoard, populateBoard, dragDrop, buttonFunctions, hitOrMiss }

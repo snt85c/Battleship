@@ -1,4 +1,5 @@
 import * as ship from "./Ship"
+import * as dom from "./domFunctions"
 
 class enemyPlayer {
     constructor(board) {
@@ -47,11 +48,14 @@ class enemyPlayer {
         this.board.playerBoard[lat][lon].shotTaken = true;
         if (this.board.playerBoard[lat][lon].hasShip) {
             player[this.board.playerBoard[lat][lon].shipProperties].hit()
+            dom.hitOrMiss(lat, lon, "player", "hit")
+
         } else {
+            dom.hitOrMiss(lat, lon, "player", "miss")
             console.log("miss")
         }
-        let id = lat + "/" + lon + "_p";
-        document.getElementById(id).style.backgroundColor = "black"
+        // let id = lat + "/" + lon + "_p";
+        // document.getElementById(id).style.backgroundColor = "black"
     }
 
     fleetStatus() {

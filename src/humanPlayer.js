@@ -60,11 +60,13 @@ class HumanPlayer {
         this.board.enemyBoard[lat][lon].shotTaken = true;
         if (this.board.enemyBoard[lat][lon].hasShip) {
             enemy[this.board.enemyBoard[lat][lon].shipProperties].hit()
-            e.style.backgroundColor = "red"
+            dom.hitOrMiss(lat, lon, "enemy", "hit")
+                // e.style.backgroundColor = "red"
 
         } else {
             console.log("miss")
-            e.style.backgroundColor = "blue"
+            dom.hitOrMiss(lat, lon, "enemy", "miss")
+                // e.style.backgroundColor = "blue"
 
         }
     }
